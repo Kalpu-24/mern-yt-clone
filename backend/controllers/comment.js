@@ -14,13 +14,13 @@ export const addComment = async (req, res,next) => {
 
 export const deleteComment = async (req, res,next) => {
     try{
-        const comment = Comments.findById(req.params.id);
-        const video = Videos.findById(comment.videoId);
+        const comment = await Comments.findById(req.params.id);
+        const video = await Videos.findById(comment.videoId);
         if(comment.userId === req.user.id || video.userId === req.user.id){
-            comment.deleteOne();
-            res.status(500).json("deleted")
+            await comment.deleteOne();
+            res.status(500).json("deleted");
         }else{
-            return createError("you can only delete your comment",401)
+            return createError("you can only delete your comment",401);
         }
     }catch(err){
         next(err);
@@ -29,7 +29,8 @@ export const deleteComment = async (req, res,next) => {
 
 export const getComments = async (req, res,next) => {
     try{
-
+        const comments = await Comments.find({videoId: req.params.videoId})
+        res.status(500).json(comments)
     }catch(err){
         next(err);
     }
