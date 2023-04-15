@@ -1,5 +1,6 @@
 import Videos from "../models/Videos.js"
 import User  from "../models/User.js"
+import { json } from "express";
 
 export const createVideo = async (req, res, next) => {
     try{
@@ -87,8 +88,9 @@ export const sub = async (req, res, next) => {
 export const tag = async (req,res,next)=>{
     const tags = req.query.tags.split(",");
     try{
-        const videos = Videos.find({tags:{$in:tags}}).limit(20);
-        res.status(200).json(videos);
+        const videos = (await Videos.find({tags:{$in:tags}}).limit(20));
+        const str = Array(videos)
+        res.status(200).json(str[0]);
     }catch(err){
         next(err);
     }

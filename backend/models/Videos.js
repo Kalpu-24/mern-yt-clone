@@ -31,11 +31,11 @@ const videoSchema = new mongoose.Schema({
     },
     likes:{
         type: [String],
-        default: 0
+        default: null
     },
     dislikes:{
         type: [String],
-        default: 0
+        default: null
     }
 }, {timestamps: true});
 

@@ -1,97 +1,124 @@
-import React from 'react';
-import styled from 'styled-components';
-import logo from '../images/logo.jpg';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
-import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
-import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
-import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
-import MusicVideoOutlinedIcon from '@mui/icons-material/MusicVideoOutlined';
-import SportsSoccerOutlinedIcon from '@mui/icons-material/SportsSoccerOutlined';
-import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
-import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
-import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
-import LiveTvOutlinedIcon from '@mui/icons-material/LiveTvOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
-import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
-import FlagCircleOutlinedIcon from '@mui/icons-material/FlagCircleOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-
+import React from "react";
+import styled from "styled-components";
+import LamaTube from "../img/logo.png";
+import HomeIcon from "@mui/icons-material/Home";
+import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
+import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
+import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
+import LibraryMusicOutlinedIcon from "@mui/icons-material/LibraryMusicOutlined";
+import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
+import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOutlined";
+import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Container = styled.div`
+  flex: 1;
+  background-color: ${({ theme }) => theme.bgLighter};
+  height: 100svh;
+  color: ${({ theme }) => theme.text};
+  font-size: 14px;
   position: sticky;
   top: 0;
-  flex: 1;
-  background-color: ${({theme})=> theme.foreground};
-  color: ${({theme})=> theme.text};
-  height: 100vh;
-  overflow: hidden;
-`
+  overflow-y: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 const Wrapper = styled.div`
   padding: 18px 26px;
-`
+`;
 const Logo = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
   font-weight: bold;
-  margin-bottom: 20px;
-`
+  margin-bottom: 25px;
+`;
+
+const Img = styled.img`
+  height: 25px;
+`;
+
 const Item = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  padding: 7.5px 0;
-`
+  padding: 7.5px 0px;
 
-const Img = styled.img`
-  height: 24px;
-  width: 24px;
-`
+  &:hover {
+    background-color: ${({ theme }) => theme.soft};
+  }
+`;
 
 const Hr = styled.hr`
-  margin: 10px 0;
-  border: 1px solid ${({theme})=> theme.soft};
-`
+  margin: 15px 0px;
+  border: 0.5px solid ${({ theme }) => theme.soft};
+`;
 
-const Login = styled.div`
-  color: ${({theme})=> theme.text};
-  gap: 1px;
-`
-
-const But = styled.button`
+const Login = styled.div``;
+const Button = styled.button`
+  padding: 5px 15px;
+  background-color: transparent;
+  border: 1px solid #3ea6ff;
+  color: #3ea6ff;
+  border-radius: 3px;
+  font-weight: 500;
   margin-top: 10px;
+  cursor: pointer;
   display: flex;
-  color: #4268ff;
   align-items: center;
-  background: transparent;
-  border: 1px solid #4268ff;
-  font-weight: bold;
-  border-radius: 3px
   gap: 5px;
-`
+`;
 
-const Menu = ({darkMode,setDarkMode}) => {
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+`;
+
+const Menu = ({ darkMode, setDarkMode }) => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   return (
     <Container>
       <Wrapper>
-        <Logo>
-          <Img src={logo} />
-          YT-CLONE
-        </Logo>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Logo>
+            <Img src={LamaTube} />
+            LamaTube
+          </Logo>
+        </Link>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
-          <HomeOutlinedIcon />
+          <HomeIcon />
           Home
         </Item>
+        </Link>
+        <Link to="trending" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <ExploreOutlinedIcon />
           Explore
         </Item>
+        </Link>
+        <Link to="sub" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <SubscriptionsOutlinedIcon />
-          Subscription
+          Subscriptions
         </Item>
+        </Link>
         <Hr />
         <Item>
           <VideoLibraryOutlinedIcon />
@@ -102,19 +129,26 @@ const Menu = ({darkMode,setDarkMode}) => {
           History
         </Item>
         <Hr />
+        {!currentUser &&
+        <>
         <Login>
-          Login Or Sign Up to Like, Comment And Subscribe.
-          <But>
-            <AccountCircleOutlinedIcon/> Sign In
-          </But>
+          Sign in to like videos, comment, and subscribe.
+          <Link to="signin" style={{textDecoration:"none"}}>
+            <Button>
+              <AccountCircleOutlinedIcon />
+              SIGN IN
+            </Button>
+          </Link>
         </Login>
-        <Hr/>
+        <Hr />
+        </>}
+        <Title>BEST OF LAMATUBE</Title>
         <Item>
-          <MusicVideoOutlinedIcon />
+          <LibraryMusicOutlinedIcon />
           Music
         </Item>
         <Item>
-          <SportsSoccerOutlinedIcon />
+          <SportsBasketballOutlinedIcon />
           Sports
         </Item>
         <Item>
@@ -122,11 +156,11 @@ const Menu = ({darkMode,setDarkMode}) => {
           Gaming
         </Item>
         <Item>
-          <MovieCreationOutlinedIcon />
-          Movie
+          <MovieOutlinedIcon />
+          Movies
         </Item>
         <Item>
-          <NewspaperOutlinedIcon />
+          <ArticleOutlinedIcon />
           News
         </Item>
         <Item>
@@ -139,20 +173,20 @@ const Menu = ({darkMode,setDarkMode}) => {
           Settings
         </Item>
         <Item>
-          <FlagCircleOutlinedIcon />
+          <FlagOutlinedIcon />
           Report
         </Item>
         <Item>
           <HelpOutlineOutlinedIcon />
           Help
         </Item>
-        <Item onClick={()=> setDarkMode(!darkMode)}>
+        <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessOutlinedIcon />
-          Light Mode
+          {darkMode ? "Light" : "Dark"} Mode
         </Item>
       </Wrapper>
     </Container>
-  )
-}
+  );
+};
 
 export default Menu;

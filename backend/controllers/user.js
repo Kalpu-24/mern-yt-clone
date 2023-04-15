@@ -32,7 +32,7 @@ export const deleteUser = async (req, res,next) => {
 export const getUser = async (req, res,next) => {
     try{
         const user = await User.findById(req.params.id);
-        const {password,__v,_id, updatedAt, createdAt,...other} = user._doc;
+        const {password,__v, updatedAt, createdAt,...other} = user._doc;
         res.status(200).json(other);
     }catch(err){
         next(err);
@@ -85,6 +85,7 @@ export const dislikeVideo = async (req, res,next) => {
             $addToSet:{dislikes:id},
             $pull:{likes:id}
         })
+        res.status(200).json("Video has been disliked");
     }catch(err){
         next(err);
     }
